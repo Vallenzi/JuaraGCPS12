@@ -114,7 +114,7 @@ curl -X POST \
 -d @request.json \
 https://${LOCATION}-documentai.googleapis.com/v1beta3/projects/${PROJECT_ID}/locations/${LOCATION}/processors/${PROCESSOR_ID}:process > output.json
 
-# Final message
+# COMPLETE
 echo
 echo "${BLUE_TEXT}${BOLD_TEXT}${RESET_FORMAT}${MAGENTA_TEXT}${UNDERLINE_TEXT}IS DONE${RESET_FORMAT}"
 echo
