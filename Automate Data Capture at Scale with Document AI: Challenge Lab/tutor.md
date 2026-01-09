@@ -2,9 +2,9 @@
 
 ### Run the following Commands in CloudShell
 ```
-curl -LO https://raw.githubusercontent.com/Itsabhishek7py/GoogleCloudSkillsboost/refs/heads/main/Automate%20Data%20Capture%20at%20Scale%20with%20Document%20AI%20Challenge%20Lab/abhishek.sh
-sudo chmod +x abhishek.sh
-./abhishek.sh
+curl -LO https://raw.githubusercontent.com/Vallenzi/JuaraGCPS12/refs/heads/main/Automate%20Data%20Capture%20at%20Scale%20with%20Document%20AI%3A%20Challenge%20Lab/vallenz.sh
+sudo chmod +x vallenz.sh
+./vallenz.sh
 ````
 ### JIKA TASK 5 GAGAL
 
