@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Define text colors and formatting
 BLACK_TEXT=$'\033[0;90m'
 RED_TEXT=$'\033[0;91m'
 GREEN_TEXT=$'\033[0;92m'
@@ -13,31 +12,31 @@ WHITE_TEXT=$'\033[0;97m'
 RESET_FORMAT=$'\033[0m'
 BOLD_TEXT=$'\033[1m'
 UNDERLINE_TEXT=$'\033[4m'
-clear # Clear the terminal screen
+clear 
 
 
 echo
-echo "${BLUE_TEXT}${BOLD_TEXT}╔═════════════════════════════════════╗${RESET_FORMAT}"
-echo "${BLUE_TEXT}${BOLD_TEXT}║      WELLCOME TO VALLENZ TECH       ║${RESET_FORMAT}"
-echo "${BLUE_TEXT}${BOLD_TEXT}╚═════════════════════════════════════╝${RESET_FORMAT}"
+echo "${BLUE_TEXT}${BOLD_TEXT}****************************${RESET_FORMAT}"
+echo "${GREEN_TEXT}${BOLD_TEXT}* WELLCOME TO VALLENZ TECH *${RESET_FORMAT}"
+echo "${BLUE_TEXT}${BOLD_TEXT}@@@@@@@@@@@@@@@@@@@@@@@@@@@@${RESET_FORMAT}"
 echo
 
-# Instruction for entering the Processor ID
+# Masukan ID
 echo
-echo "${CYAN_TEXT}${BOLD_TEXT}Please enter your Processor ID:${RESET_FORMAT}"
+echo "${BLUE_TEXT}${BOLD_TEXT}Masukan ID PROCESSOR:${RESET_FORMAT}"
 read -r PROCESSOR_ID
 export PROCESSOR_ID
 
-# Instruction before updating and installing dependencies
+# 1
 echo
-echo "${CYAN_TEXT}${BOLD_TEXT}Step 1:${RESET_FORMAT} ${GREEN_TEXT}Updating the system and installing required dependencies.${RESET_FORMAT}"
+echo "${BLUE_TEXT}${BOLD_TEXT}1:${RESET_FORMAT} ${GREEN_TEXT}Updating sistem dan install dependencies.${RESET_FORMAT}"
 sudo apt-get update
 sudo apt-get install jq -y
 sudo apt-get install python3-pip -y
 
-# Instruction before creating a service account
+# 2
 echo
-echo "${CYAN_TEXT}${BOLD_TEXT}Step 2:${RESET_FORMAT} ${GREEN_TEXT}Creating a service account for Document AI and setting up permissions.${RESET_FORMAT}"
+echo "${BLUE_TEXT}${BOLD_TEXT}2:${RESET_FORMAT} ${GREEN_TEXT}Buat service account Document AI and set up permissions.${RESET_FORMAT}"
 export PROJECT_ID=$(gcloud config get-value core/project)
 export SA_NAME="document-ai-service-account"
 gcloud iam service-accounts create $SA_NAME --display-name $SA_NAME
@@ -51,23 +50,23 @@ gcloud iam service-accounts keys create key.json \
 
 export GOOGLE_APPLICATION_CREDENTIALS="$PWD/key.json"
 
-# Instruction before downloading the sample PDF
+# 3
 echo
-echo "${CYAN_TEXT}${BOLD_TEXT}Step 3:${RESET_FORMAT} ${GREEN_TEXT}Downloading the sample PDF file for processing.${RESET_FORMAT}"
+echo "${BLUE_TEXT}${BOLD_TEXT}3:${RESET_FORMAT} ${GREEN_TEXT}Download PDF file for processing.${RESET_FORMAT}"
 gsutil cp gs://cloud-training/gsp924/health-intake-form.pdf .
 
-# Instruction before creating the JSON request
+# 4
 echo
-echo "${CYAN_TEXT}${BOLD_TEXT}Step 4:${RESET_FORMAT} ${GREEN_TEXT}Preparing the JSON request for Document AI API.${RESET_FORMAT}"
+echo "${BLUE_TEXT}${BOLD_TEXT}4:${RESET_FORMAT} ${GREEN_TEXT}Prepare JSON untuk Document AI API.${RESET_FORMAT}"
 echo '{"inlineDocument": {"mimeType": "application/pdf","content": "' > temp.json
 base64 health-intake-form.pdf >> temp.json
 echo '"}}' >> temp.json
 cat temp.json | tr -d \\n > request.json
 
-# Instruction before sending the API request
+# 5
 echo
-echo "${CYAN_TEXT}${BOLD_TEXT}Step 5:${RESET_FORMAT} ${GREEN_TEXT}Sending the request to the Document AI API. This might take some time.${RESET_FORMAT}"
-sleep 60
+echo "${BLUE_TEXT}${BOLD_TEXT}5:${RESET_FORMAT} ${GREEN_TEXT}Send request Document AI API.Harap Sabar.${RESET_FORMAT}"
+sleep 70
 export LOCATION="us"
 export PROJECT_ID=$(gcloud config get-value core/project)
 curl -X POST \
@@ -76,25 +75,25 @@ curl -X POST \
 -d @request.json \
 https://${LOCATION}-documentai.googleapis.com/v1beta3/projects/${PROJECT_ID}/locations/${LOCATION}/processors/${PROCESSOR_ID}:process > output.json
 
-# Instruction before displaying the output
+# 6
 echo
-echo "${CYAN_TEXT}${BOLD_TEXT}Step 6:${RESET_FORMAT} ${GREEN_TEXT}Displaying the processed document text.${RESET_FORMAT}"
-sleep 60
+echo "${BLUE_TEXT}${BOLD_TEXT}6:${RESET_FORMAT} ${GREEN_TEXT}output document yang telah di proses.${RESET_FORMAT}"
+sleep 70
 cat output.json | jq -r ".document.text"
 
-# Instruction before downloading the Python script
+# 7
 echo
-echo "${CYAN_TEXT}${BOLD_TEXT}Step 7:${RESET_FORMAT} ${GREEN_TEXT}Downloading the Python script for synchronous processing.${RESET_FORMAT}"
+echo "${BLUE_TEXT}${BOLD_TEXT}7:${RESET_FORMAT} ${GREEN_TEXT}Download Python script untuk proses synchronous.${RESET_FORMAT}"
 gsutil cp gs://cloud-training/gsp924/synchronous_doc_ai.py .
 
-# Instruction before installing Python dependencies
+# 8
 echo
-echo "${CYAN_TEXT}${BOLD_TEXT}Step 8:${RESET_FORMAT} ${GREEN_TEXT}Installing Python dependencies for the script.${RESET_FORMAT}"
+echo "${BLUE_TEXT}${BOLD_TEXT}8:${RESET_FORMAT} ${GREEN_TEXT}Install Python dependencies.${RESET_FORMAT}"
 python3 -m pip install --upgrade google-cloud-documentai google-cloud-storage prettytable
 
-# Instruction before running the Python script
+# 9
 echo
-echo "${CYAN_TEXT}${BOLD_TEXT}Step 9:${RESET_FORMAT} ${GREEN_TEXT}Running the Python script for synchronous processing.${RESET_FORMAT}"
+echo "${BLUE_TEXT}${BOLD_TEXT}9:${RESET_FORMAT} ${GREEN_TEXT}Menjalankan script Python untuk proses synchronous.${RESET_FORMAT}"
 export PROJECT_ID=$(gcloud config get-value core/project)
 export GOOGLE_APPLICATION_CREDENTIALS="$PWD/key.json"
 
@@ -104,9 +103,9 @@ python3 synchronous_doc_ai.py \
 --location=us \
 --file_name=health-intake-form.pdf | tee results.txt
 
-# Instruction before sending another API request
+# 10
 echo
-echo "${CYAN_TEXT}${BOLD_TEXT}Step 10:${RESET_FORMAT} ${GREEN_TEXT}Sending another request to the Document AI API for verification.${RESET_FORMAT}"
+echo "${BLUE_TEXT}${BOLD_TEXT}10:${RESET_FORMAT} ${GREEN_TEXT}Send another request Document AI API untuk verifikasi.${RESET_FORMAT}"
 export LOCATION="us"
 export PROJECT_ID=$(gcloud config get-value core/project)
 curl -X POST \
@@ -117,5 +116,5 @@ https://${LOCATION}-documentai.googleapis.com/v1beta3/projects/${PROJECT_ID}/loc
 
 # Final message
 echo
-echo "${BLUE_TEXT}${BOLD_TEXT}${RESET_FORMAT} ${MAGENTA_TEXT}${UNDERLINE_TEXT}IS DONE${RESET_FORMAT}"
+echo "${BLUE_TEXT}${BOLD_TEXT}${RESET_FORMAT}${MAGENTA_TEXT}${UNDERLINE_TEXT}IS DONE${RESET_FORMAT}"
 echo
