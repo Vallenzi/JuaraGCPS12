@@ -112,10 +112,10 @@ def analyze_bouquet_image(project_id: str, location: str):
     
     chat = model.start_chat(history=chat_history)
     
-    print("\n🎤 Chat with Gemini (type 'exit' to quit):")
+    print("\n tulis 'exit' to quit")
     
     while True:
-        user_input = input("You: ")
+        user_input = input("tulis disini : ")
         if user_input.lower() == "exit":
             break
         
