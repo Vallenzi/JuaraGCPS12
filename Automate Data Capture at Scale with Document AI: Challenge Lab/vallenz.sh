@@ -22,7 +22,7 @@ echo
 echo
 echo "MASUKAN DATA BERIKUT SESUAI DENGAN LAB"
 read -p "${BLUE_TEXT}${BOLD_TEXT}Masukan REGION: ${RESET}" REGION
-read -p "${BLUE_TEXT}${BOLD_TEXT}Masukan ID PROCESSOR: ${RESET}" PROCESSOR
+read -p "${BLUE_TEXT}${BOLD_TEXT}Masukan NAMA PROCESSOR: ${RESET}" PROCESSOR
 
 # Export variables after collecting input
 export REGION PROCESSOR
