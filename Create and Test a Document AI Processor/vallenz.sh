@@ -16,8 +16,8 @@ clear
 
 
 echo
-echo "${BLUE_TEXT}${BOLD_TEXT}****************************${RESET_FORMAT}"
-echo "${GREEN_TEXT}${BOLD_TEXT}* WELLCOME TO VALLENZ TECH *${RESET_FORMAT}"
+echo "${BLUE_TEXT}${BOLD_TEXT}@@@@@@@@@@@@@@@@@@@@@@@@@@@@${RESET_FORMAT}"
+echo "${GREEN_TEXT}${BOLD_TEXT}@ WELLCOME TO VALLENZ TECH @${RESET_FORMAT}"
 echo "${BLUE_TEXT}${BOLD_TEXT}@@@@@@@@@@@@@@@@@@@@@@@@@@@@${RESET_FORMAT}"
 echo
 
@@ -52,12 +52,12 @@ export GOOGLE_APPLICATION_CREDENTIALS="$PWD/key.json"
 
 # 3
 echo
-echo "${BLUE_TEXT}${BOLD_TEXT}3:${RESET_FORMAT} ${GREEN_TEXT}Download PDF file for processing.${RESET_FORMAT}"
+echo "${BLUE_TEXT}${BOLD_TEXT}3:${RESET_FORMAT} ${GREEN_TEXT}Download file health-intake-form.${RESET_FORMAT}"
 gsutil cp gs://cloud-training/gsp924/health-intake-form.pdf .
 
 # 4
 echo
-echo "${BLUE_TEXT}${BOLD_TEXT}4:${RESET_FORMAT} ${GREEN_TEXT}Prepare JSON untuk Document AI API.${RESET_FORMAT}"
+echo "${BLUE_TEXT}${BOLD_TEXT}4:${RESET_FORMAT} ${GREEN_TEXT}Mempersiapkan JSON API.${RESET_FORMAT}"
 echo '{"inlineDocument": {"mimeType": "application/pdf","content": "' > temp.json
 base64 health-intake-form.pdf >> temp.json
 echo '"}}' >> temp.json
@@ -65,7 +65,7 @@ cat temp.json | tr -d \\n > request.json
 
 # 5
 echo
-echo "${BLUE_TEXT}${BOLD_TEXT}5:${RESET_FORMAT} ${GREEN_TEXT}Send request Document AI API.Harap Sabar.${RESET_FORMAT}"
+echo "${BLUE_TEXT}${BOLD_TEXT}5:${RESET_FORMAT} ${GREEN_TEXT}Kirim request Document AI API. Harap bersabar.${RESET_FORMAT}"
 sleep 70
 export LOCATION="us"
 export PROJECT_ID=$(gcloud config get-value core/project)
@@ -77,13 +77,13 @@ https://${LOCATION}-documentai.googleapis.com/v1beta3/projects/${PROJECT_ID}/loc
 
 # 6
 echo
-echo "${BLUE_TEXT}${BOLD_TEXT}6:${RESET_FORMAT} ${GREEN_TEXT}output document yang telah di proses.${RESET_FORMAT}"
+echo "${BLUE_TEXT}${BOLD_TEXT}6:${RESET_FORMAT} ${GREEN_TEXT}Output document.${RESET_FORMAT}"
 sleep 70
 cat output.json | jq -r ".document.text"
 
 # 7
 echo
-echo "${BLUE_TEXT}${BOLD_TEXT}7:${RESET_FORMAT} ${GREEN_TEXT}Download Python script untuk proses synchronous.${RESET_FORMAT}"
+echo "${BLUE_TEXT}${BOLD_TEXT}7:${RESET_FORMAT} ${GREEN_TEXT}Download synchronus_doc.${RESET_FORMAT}"
 gsutil cp gs://cloud-training/gsp924/synchronous_doc_ai.py .
 
 # 8
@@ -93,7 +93,7 @@ python3 -m pip install --upgrade google-cloud-documentai google-cloud-storage pr
 
 # 9
 echo
-echo "${BLUE_TEXT}${BOLD_TEXT}9:${RESET_FORMAT} ${GREEN_TEXT}Menjalankan script Python untuk proses synchronous.${RESET_FORMAT}"
+echo "${BLUE_TEXT}${BOLD_TEXT}9:${RESET_FORMAT} ${GREEN_TEXT}Menjalankan file synchronous.${RESET_FORMAT}"
 export PROJECT_ID=$(gcloud config get-value core/project)
 export GOOGLE_APPLICATION_CREDENTIALS="$PWD/key.json"
 
@@ -105,7 +105,7 @@ python3 synchronous_doc_ai.py \
 
 # 10
 echo
-echo "${BLUE_TEXT}${BOLD_TEXT}10:${RESET_FORMAT} ${GREEN_TEXT}Send another request Document AI API untuk verifikasi.${RESET_FORMAT}"
+echo "${BLUE_TEXT}${BOLD_TEXT}10:${RESET_FORMAT} ${GREEN_TEXT}Kirim request untuk verifikasi.${RESET_FORMAT}"
 export LOCATION="us"
 export PROJECT_ID=$(gcloud config get-value core/project)
 curl -X POST \
@@ -116,5 +116,5 @@ https://${LOCATION}-documentai.googleapis.com/v1beta3/projects/${PROJECT_ID}/loc
 
 # COMPLETE
 echo
-echo "${BLUE_TEXT}${BOLD_TEXT}${RESET_FORMAT}${MAGENTA_TEXT}${UNDERLINE_TEXT}IS DONE${RESET_FORMAT}"
+echo "${BLUE_TEXT}${BOLD_TEXT}SILAHKAN CEKLIS CHECKPOIN${RESET_FORMAT}"
 echo
