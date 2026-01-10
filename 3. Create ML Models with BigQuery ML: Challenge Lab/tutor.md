@@ -3,7 +3,7 @@
 
 # 1. Buat Dataset
 Search BigQuery
-Create dataset ```ecommerce```
+Dan Create dataset ```ecommerce```
 
 # 2. Evaluate classification model performance
 Jalankan kode berikut pada BigQuery
@@ -280,7 +280,7 @@ SELECT
 ORDER BY
   predicted_will_buy_on_return_visit DESC;
 ```
-# Jika Task4 Error
+# Jika Task 4 Error Masukin kode dibawah ini Terlebih Dahulu
 ```
   CREATE OR REPLACE MODEL `ecommerce.finalized_classification_model`
   OPTIONS
