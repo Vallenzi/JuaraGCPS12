@@ -116,14 +116,9 @@ echo
 echo "${MAGENTA}${BOLD}Cloud Run Service is available at: ${RESET}""$CLOUD_RUN_URL"
 echo
 
-# Completion message with Dr. Abhishek branding
-echo "${GREEN}${BOLD}╔════════════════════════════════════════════════════════╗${RESET}"
-echo "${GREEN}${BOLD}             Lab Completed Successfully!                ${RESET}"
-echo "${GREEN}${BOLD}╚════════════════════════════════════════════════════════╝${RESET}"
+# COMPLETE
 echo
-echo "${RED}${BOLD}🙏 Thank you for following Dr. Abhishek's tutorial!${RESET}"
-echo "${YELLOW}${BOLD}📺 Subscribe for more GCP content:${RESET}"
-echo "${BLUE}https://www.youtube.com/@drabhishek.5460${RESET}"
+echo "${BLUE_TEXT}${BOLD_TEXT}SILAHKAN CEKLIS CHECKPOIN${RESET_FORMAT}"
 echo
 
 # Cleanup function
