@@ -57,7 +57,7 @@ rm -rf Dockerfile chef.py requirements.txt
 echo "${GREEN_TEXT}${BOLD}Downloading required files...${RESET}"
 wget https://raw.githubusercontent.com/Vallenzi/JuaraGCPS12/refs/heads/main/4.Develop%20GenAI%20Apps%20with%20Gemini%20and%20Streamlit%3A%20Challenge%20Lab/chef.py
 wget https://raw.githubusercontent.com/Vallenzi/JuaraGCPS12/refs/heads/main/4.Develop%20GenAI%20Apps%20with%20Gemini%20and%20Streamlit%3A%20Challenge%20Lab/Dockerfile
-wget https://github.com/Vallenzi/JuaraGCPS12/blob/main/4.Develop%20GenAI%20Apps%20with%20Gemini%20and%20Streamlit%3A%20Challenge%20Lab/requirements.txt
+wget https://raw.githubusercontent.com/Vallenzi/JuaraGCPS12/refs/heads/main/4.Develop%20GenAI%20Apps%20with%20Gemini%20and%20Streamlit%3A%20Challenge%20Lab/requirements.txt
 
 # 6: Upload chef.py to the Cloud Storage bucket
 echo "${GREEN_TEXT}${BOLD}Uploading 'chef.py' to Cloud Storage bucket...${RESET}"
