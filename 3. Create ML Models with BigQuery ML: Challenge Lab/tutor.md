@@ -6,7 +6,7 @@ Search BigQuery
 Create dataset ```ecommerce```
 
 # 2. Evaluate classification model performance
-Jalankan skrip berikut pada BigQuery
+Jalankan kode berikut pada BigQuery
 
 ```sql
 CREATE OR REPLACE MODEL `ecommerce.customer_classification_model`
@@ -72,8 +72,8 @@ FROM
 ));
 ```
 
-### Task 3. Improve model performance with Feature Engineering and Evaluate the model to see if there is better predictive power
-Run this script in BigQuery Editor
+# 3. Improve model performance with Feature Engineering and Evaluate the model to see if there is better predictive power
+Jalankan kode berikut pada BigQuery
 ```sql
 CREATE OR REPLACE MODEL `ecommerce.improved_customer_classification_model`
 OPTIONS
@@ -211,8 +211,8 @@ SELECT * EXCEPT(unique_session_id) FROM (
 ));
 ```
 
-### Task 4. Predict which new visitors will come back and purchase
-Run this script in BigQuery Editor
+# 4. Predict which new visitors will come back and purchase
+Jalankan kode berikut pada BigQuery
 ```sql
 SELECT
 *
