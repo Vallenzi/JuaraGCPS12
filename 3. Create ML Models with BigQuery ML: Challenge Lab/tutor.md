@@ -2,11 +2,12 @@
 
 
 # 1. Buat Dataset
-* Open BigQuery
-* Create dataset ```ecommerce```
+Search BigQuery
+Create dataset ```ecommerce```
 
 # 2. Evaluate classification model performance
-Run this script in BigQuery Editor
+Jalankan skrip berikut pada BigQuery
+
 ```sql
 CREATE OR REPLACE MODEL `ecommerce.customer_classification_model`
 OPTIONS
